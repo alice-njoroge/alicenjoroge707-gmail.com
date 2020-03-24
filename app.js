@@ -15,7 +15,7 @@ app.use('/', auth);
 app.use(function(err, req, res, next) {
     console.log(err);
     res.status(err.status || 500);
-  return res.send(err);
+    res.json({ error : err.message });
 });
 
 app.listen(4000, ()=>{
