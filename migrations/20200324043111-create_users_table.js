@@ -6,7 +6,8 @@ module.exports = {
             id: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
-                allowNull: false
+                allowNull: false,
+                autoIncrement:true
             },
             email: {
                 type: Sequelize.STRING,
