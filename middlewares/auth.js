@@ -60,3 +60,19 @@ passport.use('login', new LocalStrategy({
         }
     }
 ));
+
+const secret_key = process.env.SECRET_KEY;
+passport.use(new JWTStrategy({
+    //secret we used to sign our JWT
+    secretOrKey : `${secret_key}`,
+    //we expect the user to send the token as a query parameter with the name 'secret_token'
+    jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken()
+},  (token, done) => {
+    console.log(token);
+    try {
+        //Pass the user details to the next middleware
+        return done(null, token.user);
+    } catch (error) {
+        done(error);
+    }
+}));
